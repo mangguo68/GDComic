@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_menu_home"
+        android:icon="@drawable/selector_icon_home"
+        android:title="首页" />
+    <item
+        android:id="@+id/bottom_menu_found"
+        android:icon="@drawable/selector_icon_find"
+        android:title="发现" />
+    <item
+        android:id="@+id/bottom_menu_foot"
+        android:icon="@drawable/selector_icon_foot"
+        android:title="足迹" />
+    <item
+        android:id="@+id/bottom_menu_me"
+        android:icon="@drawable/selector_icon_me"
+        android:title="我的" />
+
+</menu>

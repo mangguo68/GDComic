@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.graduation.design.view.viewmodel.item.rank.RankOtherVm" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            android:onClick="@{vm::onItemClicked}"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
+            app:layout_constraintEnd_toStartOf="@+id/rank_position"
+            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintTop_toTopOf="@+id/cardView">
+
+            <!--漫画名-->
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="17sp"
+                android:includeFontPadding="false"
+                android:maxWidth="200dp"
+                android:singleLine="true"
+                android:text="@{vm.liveRankData.rankDataOther.name}"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <!--作者-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_author" />
+
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:includeFontPadding="false"
+                    android:text="@{vm.liveRankData.rankDataOther.author}"
+                    android:textColor="#9b9b9b"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <!--类型-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_type" />
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:includeFontPadding="false"
+                    android:text="@{vm.liveRankData.rankDataOther.comicType}"
+                    android:textColor="#9b9b9b"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <!--最近更新-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_recent_update" />
+
+                <TextView
+                    android:id="@+id/update"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:includeFontPadding="false"
+                    android:text="@{vm.liveRankData.rankDataOther.lastUpdate}"
+                    android:textColor="#9b9b9b"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <!--本周人气-->
+            <TextView
+                android:id="@+id/popularity"
+                android:layout_width="wrap_content"
+                android:layout_height="15sp"
+                android:layout_marginTop="12dp"
+                android:includeFontPadding="false"
+                android:text="@{vm.liveRankData.rankDataOther.popularity}"
+                android:textColor="#FE7272"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="8dp"
+            android:onClick="@{vm::onItemClicked}"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:defaultImageResource="@{@drawable/ic_404}"
+                app:errorImageResource="@{@drawable/ic_404}"
+                app:networkImage="@{vm.liveRankData.rankDataOther.cover}" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/rank_position"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/background_position"
+            android:gravity="center"
+            android:text="@{String.valueOf(vm.liveRankData.rankPosition)}"
+            android:textColor="#4BA5FF"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

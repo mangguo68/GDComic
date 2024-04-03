@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.graduation.design.view.ui.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.ui.home.HomeFragment">
+
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:layout_width="match_parent"
+            app:onRefresh="@{vm::onRefresh}"
+            android:layout_height="match_parent">
+
+            <com.scwang.smart.refresh.header.MaterialHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="25dp"
+                            app:mData="@{vm.liveRvData}" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+                        <!--banner-->
+                        <com.youth.banner.Banner
+                            android:id="@+id/banner"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/banner_height"
+                            app:onBannerItemClicked="@{vm.bannerListener}"
+                            app:bannerData="@{vm.liveBannerData}"
+                            app:banner_indicator_marginBottom="62dp" />
+
+                        <!--遮羞器-->
+                        <com.graduation.design.domian.views.Disguise
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/banner_height"
+                            android:layout_alignBottom="@id/banner" />
+
+                        <ImageView
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="40dp"
+                            android:layout_marginEnd="18dp"
+                            android:onClick="@{vm::onSearchClick}"
+                            android:src="@drawable/ic_search" />
+                    </RelativeLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView"
+                        android:layout_width="294dp"
+                        android:layout_height="70dp"
+                        android:translationY="16dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="3dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:id="@+id/quick_entrance_history"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/background_quick_bar"
+                                android:onClick="@{vm::onHistoryClick}">
+
+                                <ImageView
+                                    android:id="@+id/icon_history"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="8dp"
+                                    android:src="@drawable/ic_history" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/icon_history"
+                                    android:layout_centerHorizontal="true"
+                                    android:includeFontPadding="false"
+                                    android:text="历史"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/quick_entrance_rank"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/background_quick_bar"
+                                android:onClick="@{vm::onRankClick}">
+
+                                <ImageView
+                                    android:id="@+id/icon_rank"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="8dp"
+                                    android:src="@drawable/ic_rank" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/icon_rank"
+                                    android:layout_centerHorizontal="true"
+                                    android:includeFontPadding="false"
+                                    android:text="排行"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/quick_entrance_sort"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/background_quick_bar"
+                                android:onClick="@{vm::onSortClick}">
+
+                                <ImageView
+                                    android:id="@+id/icon_sort"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="8dp"
+                                    android:src="@drawable/ic_sort" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/icon_sort"
+                                    android:layout_centerHorizontal="true"
+                                    android:includeFontPadding="false"
+                                    android:text="分类"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="没有更多了哦(～￣▽￣)～" />
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

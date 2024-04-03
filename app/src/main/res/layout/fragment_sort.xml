@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.graduation.design.view.ui.sort.SortViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.ui.sort.SortFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_1"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/background_tab_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:onSelectedListener="@{vm.onTabSelectedListener}"
+                app:selectedTab="@={vm.liveTabSelectionList.get(0)}"
+                app:tabBackground="@drawable/background_selected_tab_2"
+                app:tabIndicatorHeight="0dp"
+                app:tabRippleColor="#0fff"
+                app:tabSelectedTextColor="#F7AA10"
+                app:tabTextColor="#999">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全部" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="少年" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="少女" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="青年" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_2"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginTop="8dp"
+                app:onSelectedListener="@{vm.onTabSelectedListener}"
+                android:background="@drawable/background_tab_2"
+                app:layout_constraintStart_toStartOf="@+id/tab_1"
+                app:layout_constraintTop_toBottomOf="@+id/tab_1"
+                app:selectedTab="@={vm.liveTabSelectionList.get(1)}"
+                app:tabBackground="@drawable/background_selected_tab_2"
+                app:tabIndicatorHeight="0dp"
+                app:tabRippleColor="#0fff"
+                app:tabSelectedTextColor="#F7AA10"
+                app:tabTextColor="#999">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全部" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="连载" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="完结" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_3"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginTop="8dp"
+                app:onSelectedListener="@{vm.onTabSelectedListener}"
+                android:background="@drawable/background_tab_2"
+                app:layout_constraintStart_toStartOf="@+id/tab_2"
+                app:layout_constraintTop_toBottomOf="@+id/tab_2"
+                app:selectedTab="@={vm.liveTabSelectionList.get(2)}"
+                app:tabBackground="@drawable/background_selected_tab_2"
+                app:tabIndicatorHeight="0dp"
+                app:tabMinWidth="0dp"
+                app:tabMode="auto"
+                app:tabRippleColor="#0fff"
+                app:tabSelectedTextColor="#F7AA10"
+                app:tabTextColor="#999">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全部" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="冒险" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="搞笑" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="格斗" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="科幻" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="爱情" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="侦探" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_4"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginTop="8dp"
+                app:onSelectedListener="@{vm.onTabSelectedListener}"
+                android:background="@drawable/background_tab_2"
+                app:layout_constraintStart_toStartOf="@+id/tab_3"
+                app:layout_constraintTop_toBottomOf="@+id/tab_3"
+                app:selectedTab="@={vm.liveTabSelectionList.get(3)}"
+                app:tabBackground="@drawable/background_selected_tab_2"
+                app:tabIndicatorHeight="0dp"
+                app:tabMinWidth="0dp"
+                app:tabMode="auto"
+                app:tabRippleColor="#0fff"
+                app:tabSelectedTextColor="#F7AA10"
+                app:tabTextColor="#999">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全部" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="故事漫画" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="四格多格" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <com.scwang.smart.refresh.layout.SmartRefreshLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:onRefresh="@{vm::onRefresh}"
+                android:layout_marginTop="16dp"
+                app:onLoadMore="@{vm::onLoadMore}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tab_4">
+
+                <!--刷新头-->
+                <com.scwang.smart.refresh.header.MaterialHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!--数据区-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_sort"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="9dp"
+                    android:paddingEnd="9dp"
+                    app:resultData="@{vm.liveSortRvData}" />
+
+                <!--刷新尾-->
+                <com.scwang.smart.refresh.footer.BallPulseFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>
