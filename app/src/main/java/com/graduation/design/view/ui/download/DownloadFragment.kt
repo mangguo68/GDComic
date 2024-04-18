@@ -20,13 +20,9 @@ class DownloadFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_download, container, false)
-    }
+        viewModel = ViewModelProvider(this)[DownloadViewModel::class.java]
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DownloadViewModel::class.java)
-        // TODO: Use the ViewModel
+        return inflater.inflate(R.layout.fragment_download, container, false)
     }
 
 }

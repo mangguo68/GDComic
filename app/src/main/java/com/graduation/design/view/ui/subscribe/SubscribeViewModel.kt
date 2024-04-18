@@ -2,6 +2,8 @@ package com.graduation.design.view.ui.subscribe
 
 import android.util.Log
 import android.view.View
+import android.view.View.OnClickListener
+import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -9,6 +11,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.graduation.design.R
+import com.graduation.design.model.pojo.SortItemParams
 import com.graduation.design.model.pojo.SortType
 import com.graduation.design.model.pojo.SubscribeData
 import com.graduation.design.model.result.Results
@@ -22,41 +25,54 @@ class SubscribeViewModel(
     liveVisibility: MutableLiveData<Int>,
 ) : ViewModel() {
     // TODO: Implement the ViewModel
-    val repository = MainRepository()
+    private val repository = MainRepository()
     val liveSubscribeRvData = liveData {
         emit(
             repository.getSubscribeData(1, SortType.subscribe_order)
         )
     }
 
-    val onTabSelectedListener = object : OnTabSelectedListener {
-        override fun onTabSelected(tab: TabLayout.Tab?) {
-            //tab选中的监听（排序的监听）
+    val onTabSelectedListener = OnClickListener { v ->
+        //顺序按钮被点击的监听
+        viewModelScope.launch {
+            when ((v as TextView).text) {
+                "订阅顺序" -> {
+                    changeState(0)
+                    (liveSubscribeRvData as MutableLiveData).value =
+                        repository.getSubscribeData(1, SortType.subscribe_order)
 
-            viewModelScope.launch {
-                when (tab!!.text) {
-                    "订阅顺序" -> {
-                        (liveSubscribeRvData as MutableLiveData).value =
-                            repository.getSubscribeData(1, SortType.subscribe_order)
-                    }
+                }
 
-                    "更新时间" -> {
-                        (liveSubscribeRvData as MutableLiveData).value =
-                            repository.getSubscribeData(1, SortType.update_time)
-                    }
+                "更新时间" -> {
+                    changeState(1)
+                    (liveSubscribeRvData as MutableLiveData).value =
+                        repository.getSubscribeData(1, SortType.update_time)
 
-                    else -> {
-                        (liveSubscribeRvData as MutableLiveData).value =
-                            repository.getSubscribeData(1, SortType.recent_read)
-                    }
+                }
+
+                else -> {
+                    changeState(2)
+                    (liveSubscribeRvData as MutableLiveData).value =
+                        repository.getSubscribeData(1, SortType.recent_read)
+
                 }
             }
-
         }
+    }
 
-        override fun onTabUnselected(tab: TabLayout.Tab?) {}
+    val liveTabRvData = MutableLiveData(
+        listOf(
+            SortItemParams("订阅顺序", MutableLiveData(true), onTabSelectedListener),
+            SortItemParams("更新时间", onTabSelectedListener = onTabSelectedListener),
+            SortItemParams("最近阅读", onTabSelectedListener = onTabSelectedListener),
+        )
+    )
 
-        override fun onTabReselected(tab: TabLayout.Tab?) {}
+    private fun changeState(index: Int) {
+        liveTabRvData.value!!.forEach {
+            it.state.value = false
+        }
+        liveTabRvData.value!![index].state.value = true
     }
 
     val liveToolBarVisibility = liveVisibility
@@ -95,6 +111,17 @@ class SubscribeViewModel(
 
     fun onDelete(view: View) {
         //删除的监听
-        PopTip.show("删除")
+        //获取要删除的item的信息
+        val shoppingCart = mutableListOf<SubscribeData>()
+        liveSubscribeRvData.value!!.data.forEach {
+            if (it.liveShoppingCart.value == true) {
+                shoppingCart.add(it)
+            }
+        }
+        var msg = ""
+        shoppingCart.forEach {
+            msg += it.name + "**"
+        }
+        PopTip.show("删除:$msg")
     }
 }

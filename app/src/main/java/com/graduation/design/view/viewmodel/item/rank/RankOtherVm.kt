@@ -8,7 +8,6 @@ import com.kongzue.dialogx.dialogs.PopTip
 
 class RankOtherVm(rankData: RankData) : ViewModel() {
     val liveRankData = MutableLiveData(rankData)
-
     fun onItemClicked(view: View){
         //item被点击的监听
         PopTip.show("跳转，target="+ liveRankData.value!!.rankDataOther.target)

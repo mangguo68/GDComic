@@ -1,6 +1,7 @@
 package com.graduation.design.view.ui.foot
 
 import android.view.View
+import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,11 +34,14 @@ class FootViewModel : ViewModel() {
         //编辑按钮的监听
         //判断当前选中的tab是哪一个
         //展示ui
-        if (liveVisibility.value == View.GONE)
+        val textView = view as TextView
+        if (liveVisibility.value == View.GONE) {
             liveVisibility.value = View.VISIBLE
-        else
+            textView.text = "完成"
+        } else {
             liveVisibility.value = View.GONE
-
+            textView.text = "编辑"
+        }
     }
 
 }

@@ -17,6 +17,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cv"
             android:layout_width="98dp"
+            android:onClick="@{vm::onSortItemClicked}"
             android:layout_height="131dp"
             android:layout_marginTop="10dp"
             app:cardCornerRadius="12dp"

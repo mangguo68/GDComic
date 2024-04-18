@@ -19,7 +19,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_top_tab"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:paddingStart="4dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:mData="@{vm.liveTabRvData}" />
+
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@color/white"
@@ -58,54 +71,29 @@
                     android:text="删除" />
             </LinearLayout>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:onSelectedListener="@{vm.onTabSelectedListener}"
-                app:tabBackground="@drawable/background_all"
-                app:tabIndicatorHeight="0dp">
-
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tab_subscribe_order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="订阅顺序" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tab_update_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="更新时间" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tab_recent_read"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="最近阅读" />
-            </com.google.android.material.tabs.TabLayout>
-
             <com.scwang.smart.refresh.layout.SmartRefreshLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+                app:layout_constraintTop_toBottomOf="@+id/rv_top_tab"
                 app:onLoadMore="@{vm::onLoadMore}"
                 app:onRefresh="@{vm::onRefresh}">
 
                 <com.scwang.smart.refresh.header.MaterialHeader
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="true"
+                    android:paddingTop="8dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_foot_subscribe"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:clipToPadding="true"
+                    android:paddingTop="4dp"
                     app:resultData="@{vm.liveSubscribeRvData}" />
 
                 <com.scwang.smart.refresh.footer.BallPulseFooter

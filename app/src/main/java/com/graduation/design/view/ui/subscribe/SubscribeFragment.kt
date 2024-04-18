@@ -10,12 +10,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.graduation.design.R
 import com.graduation.design.databinding.FragmentSubscribeBinding
+import com.graduation.design.databinding.ItemSortTabBinding
 import com.graduation.design.databinding.ItemSubscribeBinding
+import com.graduation.design.domian.adapter.AdapterRv
 import com.graduation.design.domian.adapter.AdapterRvEmpty
+import com.graduation.design.model.pojo.SortItemParams
 import com.graduation.design.model.pojo.SubscribeData
 import com.graduation.design.view.viewmodel.item.subscribe.ItemSubscribeVm
+import com.graduation.design.view.viewmodel.item.subscribe.ItemTabOrderVm
 
 class SubscribeFragment(
     val liveVisibility: MutableLiveData<Int>,
@@ -35,7 +40,7 @@ class SubscribeFragment(
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
 
-        initViews(binding)
+        initViews(binding,viewModel)
         initData(binding, viewModel)
 
         return binding.root
@@ -45,7 +50,7 @@ class SubscribeFragment(
 
     }
 
-    private fun initViews(binding: FragmentSubscribeBinding) {
+    private fun initViews(binding: FragmentSubscribeBinding, viewModel: SubscribeViewModel) {
 
         //rv
         binding.rvFootSubscribe.adapter = object :
@@ -70,6 +75,15 @@ class SubscribeFragment(
             }
 
         }
+
+        //tab rv
+        binding.rvTopTab.adapter= object : AdapterRv<SortItemParams,ItemSortTabBinding>(R.layout.item_sort_tab) {
+            override fun bind(context: Context, binding: ItemSortTabBinding, data: SortItemParams) {
+                binding.vm = ItemTabOrderVm(data)
+            }
+        }
+
+        binding.rvTopTab.layoutManager=LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
     }
 
 }

@@ -7,5 +7,4 @@ data class HomeItemParameter<T>(
     var title: String = "我的订阅",
     var itemType: HomePageItemType = HomePageItemType.OtherType,
     var rvParameter: RvParameter<T>
-) {
-}
+)

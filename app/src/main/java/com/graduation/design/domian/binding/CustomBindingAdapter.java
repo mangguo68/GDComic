@@ -104,4 +104,10 @@ public class CustomBindingAdapter {
         if (selected != null)
             view.setSelected(selected);
     }
+
+    @BindingAdapter("app:dynamicSrc")
+    public static void setSrc(View view, int srcId) {
+        if (view instanceof ImageView)
+            ((ImageView) view).setImageResource(srcId);
+    }
 }

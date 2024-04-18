@@ -12,51 +12,53 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_height="wrap_content">
 
-        <!--checkbox-->
-        <RelativeLayout
-            android:translationZ="1dp"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#33000000"
-            android:onClick="@{vm::onCheckBoxClicked}"
-            android:visibility="@{vm.liveCheckBoxVisibility}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="24dp"
-                app:isSelected="@{vm.liveCheckBoxState}"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/selector_checkbox" />
-        </RelativeLayout>
-
-        <ImageView
+        <androidx.cardview.widget.CardView
             android:id="@+id/imageView"
             android:layout_width="97dp"
             android:layout_height="134dp"
-            android:onClick="@{vm::onItemClicked}"
-            android:scaleType="centerCrop"
-            app:defaultImageResource="@{@drawable/ic_404}"
-            app:errorImageResource="@{@drawable/ic_404}"
             app:layout_constraintEnd_toEndOf="parent"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:networkImage="@{vm.liveSubscribeData.cover}"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="parent">
+            <!--checkbox-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#33000000"
+                android:onClick="@{vm::onCheckBoxClicked}"
+                android:translationZ="10dp"
+                android:visibility="@{vm.liveCheckBoxVisibility}">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/selector_checkbox"
+                    app:isSelected="@{vm.liveCheckBoxState}" />
+            </RelativeLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="@{vm::onItemClicked}"
+                android:scaleType="centerCrop"
+                app:defaultImageResource="@{@drawable/ic_404}"
+                app:errorImageResource="@{@drawable/ic_404}"
+                app:networkImage="@{vm.liveSubscribeData.cover}"
+                tools:srcCompat="@tools:sample/avatars" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="@{vm.liveSubscribeData.name}"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@+id/imageView"
@@ -66,7 +68,10 @@
             android:id="@+id/textView3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
             android:text="@{vm.liveSubscribeData.history}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />

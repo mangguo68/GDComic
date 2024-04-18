@@ -19,36 +19,53 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_foot"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:onSelectedListener="@{vm.onTabSelectedListener}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:onSelectedListener="@{vm.onTabSelectedListener}"
+            app:tabIndicator="@drawable/background_tablayout_indicator"
+            app:tabIndicatorColor="@color/black"
+            app:tabIndicatorFullWidth="false"
+            app:tabSelectedTextAppearance="@style/TextAppearance.AppCompat.selected"
+            app:tabSelectedTextColor="#1C1D1F"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.unselected">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Monday" />
+                android:text="追漫" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tuesday" />
+                android:text="历史" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wednesday" />
+                android:text="缓存" />
         </com.google.android.material.tabs.TabLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_foot" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_foot"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tab_foot" />
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
         <TextView
             android:id="@+id/textView"

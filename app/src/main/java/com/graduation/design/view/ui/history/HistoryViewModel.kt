@@ -59,6 +59,18 @@ class HistoryViewModel(
 
     fun onDelete(view: View) {
         //删除的监听
-        PopTip.show("删除")
+        //获取要删除的东西
+        val deleteItems = mutableListOf<HistoryData>()
+        liveHistoryRvData.value!!.data.forEach {
+            if (it.liveShoppingCart.value == true) {
+                deleteItems.add(it)
+            }
+        }
+        var msg = ""
+
+        deleteItems.forEach {
+            msg += it.name + "*"
+        }
+        PopTip.show("删除:$msg")
     }
 }

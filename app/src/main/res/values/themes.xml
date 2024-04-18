@@ -13,4 +13,12 @@
         <item name="android:statusBarColor">#003700B3</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="TextAppearance.AppCompat.selected">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.unselected">
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>
